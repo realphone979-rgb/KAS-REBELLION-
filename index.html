@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KAS REBELION — Anggota</title>
+<style>
+:root{--p:#ff2f9d;--bg:#07070a;--card:#121218;--line:#292933;--muted:#a6a6b1;--green:#24d47b;--red:#ff526b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#42132f 0,#07070a 40%);color:#fff;font:15px system-ui,Arial}.hidden{display:none!important}
+header{height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;border-bottom:1px solid var(--line);background:#09090ddd;backdrop-filter:blur(12px);position:sticky;top:0;z-index:4}.brand{font-weight:950;font-size:19px}.brand i{color:var(--p);font-style:normal}.tag{font-size:11px;color:#fff;background:#291021;border:1px solid #64204c;border-radius:99px;padding:6px 10px}
+.wrap{max-width:900px;margin:auto;padding:22px 15px 90px}.hello{color:var(--muted);font-size:13px}.name{font-size:29px;font-weight:950;margin:3px 0 18px}.name b{color:var(--p)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.card{background:linear-gradient(145deg,#15151c,#0e0e13);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 15px 50px #0007}.stat{min-height:148px}.label{font-size:12px;color:var(--muted);letter-spacing:.8px}.money{font-size:37px;font-weight:950;margin:17px 0 3px}.red{color:var(--red)}.green{color:var(--green)}.desc{font-size:12px;color:var(--muted)}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.btn{border:0;border-radius:13px;padding:13px 15px;background:var(--p);color:#fff;font-weight:850}.btn.alt{background:#191920;border:1px solid #34343e}.title{font-size:25px;font-weight:950;margin:3px 0 16px}.page{display:none}.page.active{display:block}
+input,textarea{width:100%;padding:13px;background:#09090d;color:#fff;border:1px solid #33333d;border-radius:13px;outline:none}textarea{min-height:100px}.form{display:grid;gap:11px}.amounts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.amounts button{padding:14px;background:#191920;border:1px solid #363640;color:#fff;border-radius:13px;font-weight:850}.amounts button.selected{border-color:var(--p);box-shadow:0 0 0 2px #ff2f9d22}
+.preview{width:100%;max-height:220px;object-fit:contain;border-radius:12px;margin-top:5px;border:1px solid var(--line)}.row{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}.row:last-child{border:0}.badge{font-size:11px;border-radius:99px;padding:5px 8px}.pending{background:#3d300b;color:#ffd66e}.approved{background:#0b3924;color:#64e9a0}.rejected{background:#421721;color:#ff8a9a}
+nav{position:fixed;bottom:0;left:0;right:0;background:#0b0b0ff5;border-top:1px solid var(--line);z-index:5}.nav{max-width:900px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr)}nav button{background:none;border:0;color:#8d8d98;padding:10px 3px;font-size:11px}nav button.active{color:var(--p);font-weight:900}
+.login{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at 50% 5%,#491533,#07070a 48%)}.box{width:min(420px,100%);padding:27px;background:#101016;border:1px solid #2d2d36;border-radius:27px;box-shadow:0 30px 100px #000}.logo{text-align:center;font-size:33px;font-weight:950}.logo i{color:var(--p);font-style:normal}.sub{text-align:center;color:var(--muted);margin:7px 0 23px;font-size:13px}.note{text-align:center;color:#777782;font-size:11px;line-height:1.5;margin-top:13px}
+@media(max-width:600px){.grid{grid-template-columns:1fr 1fr}.money{font-size:30px}.actions{grid-template-columns:1fr}.name{font-size:25px}}
+.shop-photo{width:72px;height:72px;border-radius:18px;object-fit:cover;border:1px solid #54203f;background:#1a1017}.brand-wrap{display:flex;align-items:center;gap:10px}</style></head><body>
+<div id="login" class="login"><div class="box">
+<div class="logo">KAS <i>REBELION</i></div><div class="sub">Portal Anggota • Kas harian</div>
+<form id="loginForm" class="form"><input id="name" placeholder="Nama IC" required><input id="pass" type="password" placeholder="Sandi" required><button class="btn">Masuk</button></form>
+<div class="note">Sandi tetap disimpan sebagai sistem internal dan tidak ditampilkan pada halaman.</div>
+</div></div>
+<div id="app" class="hidden">
+<header><div class="brand-wrap"><img class="shop-photo" src="foto-usaha.jpg" onerror="this.style.display='none'"><div class="brand">KAS <i>REBELION</i></div></div><div class="tag">ANGGOTA</div></header>
+<main class="wrap">
+<section id="home" class="page active"><div class="hello">Selamat datang,</div><div class="name" id="who"></div>
+<div class="grid"><div class="card stat"><div class="label">TUNGGAKAN</div><div id="debt" class="money red">-1k</div><div class="desc">Bertambah 1k setiap hari.</div></div>
+<div class="card stat"><div class="label">SALDO</div><div id="bal" class="money green">0k</div><div class="desc">Sisa pembayaran setelah tunggakan.</div></div></div>
+<div class="card" style="margin-top:14px"><b style="font-size:18px">Kas hari ini</b><p class="desc">Setiap hari kewajiban kas bertambah 1k. Contoh: tunggakan 1k dibayar 2k → tunggakan 0k dan saldo +1k setelah admin menyetujui.</p><div class="actions"><button class="btn" onclick="show('kas')">Bayar Kas</button><button class="btn alt" onclick="show('pending')">Status Saya</button></div></div>
+</section>
+<section id="kas" class="page"><div class="title">Kas / Pengisian Iuran</div><div class="card"><form id="payForm" class="form">
+<div class="amounts"><button type="button" onclick="pick(1000,this)">1k</button><button type="button" onclick="pick(2000,this)">2k</button><button type="button" onclick="pick(5000,this)">5k</button></div>
+<input id="custom" type="number" min="1000" step="1000" placeholder="Atau isi nominal (Rp)">
+<input id="proof" type="file" accept="image/*" required><img id="preview" class="preview hidden">
+<button class="btn">Kirim Pembayaran + Bukti</button></form></div></section>
+<section id="pending" class="page"><div class="title">Pending</div><div class="card"><div id="myPayments"></div></div></section>
+<section id="question" class="page"><div class="title">Ajukan Pertanyaan</div><div class="card"><form id="qForm" class="form"><input id="qt" placeholder="Judul pertanyaan" required><textarea id="qx" placeholder="Tulis pertanyaan..." required></textarea><button class="btn">Kirim Pertanyaan</button></form><div id="qok" class="desc" style="margin-top:10px"></div></div></section>
+</main>
+<nav><div class="nav"><button id="n-home" onclick="show('home')">⌂<br>Beranda</button><button id="n-kas" onclick="show('kas')">＋<br>Kas</button><button id="n-pending" onclick="show('pending')">◷<br>Pending</button><button id="n-question" onclick="show('question')">?<br>Pertanyaan</button></div></nav>
+</div>
+<script>
+const DBKEY='KAS_REBELION_DB_V2', PASS='REBELLION01';
+const load=()=>JSON.parse(localStorage.getItem(DBKEY)||'{"users":{},"payments":[],"questions":[]}');
+const save=db=>localStorage.setItem(DBKEY,JSON.stringify(db));
+const fmt=n=>`${Math.round(n/1000)}k`;
+function syncDaily(u){
+  const today=new Date(); today.setHours(0,0,0,0);
+  const last=new Date(u.lastDebtDate||today); last.setHours(0,0,0,0);
+  const days=Math.max(0,Math.floor((today-last)/86400000));
+  if(days>0){u.debt+=days*1000;u.lastDebtDate=today.toISOString()}
+}
+function getUser(db,name){
+  if(!db.users[name]) db.users[name]={name,debt:1000,balance:0,lastDebtDate:new Date().toISOString()};
+  syncDaily(db.users[name]); save(db); return db.users[name];
+}
+
+let current='';
+function show(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(p).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));document.getElementById('n-'+p).classList.add('active');if(p==='home')render();if(p==='pending')renderPayments()}
+function render(){let db=load(),u=getUser(db,current);document.getElementById('who').innerHTML='<b>'+u.name+'</b>';document.getElementById('debt').textContent='-'+fmt(u.debt);document.getElementById('bal').textContent=fmt(u.balance)}
+document.getElementById('loginForm').addEventListener('submit', function(e){
+ e.preventDefault();
+ const enteredName=document.getElementById('name').value.trim();
+ const enteredPass=document.getElementById('pass').value;
+ if(!enteredName){alert('Nama IC wajib diisi.');return;}
+ if(enteredPass!==PASS){alert('Sandi salah. Gunakan REBELLION01.');return;}
+ current=enteredName;
+ const db=load();
+ getUser(db,current);
+ document.getElementById('login').classList.add('hidden');
+ document.getElementById('app').classList.remove('hidden');
+ render();
+ show('home');
+});
+let selected=0;function pick(n,el){selected=n;document.querySelectorAll('.amounts button').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');document.getElementById('custom').value=''}
+document.getElementById('proof').onchange=()=>{let f=document.getElementById('proof').files[0];if(!f)return;let r=new FileReader();r.onload=()=>{preview.src=r.result;preview.classList.remove('hidden')};r.readAsDataURL(f)}
+document.getElementById('payForm').onsubmit=e=>{e.preventDefault();let amount=Number(document.getElementById('custom').value)||selected;if(amount<1000){alert('Pilih atau isi nominal minimal 1k.');return}let f=document.getElementById('proof').files[0];if(!f){alert('Wajib kirim bukti foto.');return}let r=new FileReader();r.onload=()=>{let db=load();db.payments.push({id:Date.now(),user:current,amount,status:'pending',proof:r.result,time:new Date().toLocaleString('id-ID')});save(db);e.target.reset();preview.classList.add('hidden');selected=0;alert('Pembayaran berhasil dikirim. Menunggu persetujuan admin.');show('pending')};r.readAsDataURL(f)}
+function renderPayments(){let db=load(),p=db.payments.filter(x=>x.user===current).slice().reverse();myPayments.innerHTML=p.length?p.map(x=>'<div class="row"><div><b>'+fmt(x.amount)+'</b><div class="desc">'+x.time+'</div></div><span class="badge '+x.status+'">'+(x.status==='pending'?'Menunggu':x.status==='approved'?'Disetujui':'Ditolak')+'</span></div>').join(''):'<div class="desc">Belum ada pengajuan pembayaran.</div>'}
+document.getElementById('qForm').onsubmit=e=>{e.preventDefault();let db=load();db.questions.push({id:Date.now(),user:current,title:qt.value,text:qx.value,time:new Date().toLocaleString('id-ID')});save(db);e.target.reset();document.getElementById('qok').textContent='Pertanyaan terkirim ke admin.'}
+</script></body></html>
